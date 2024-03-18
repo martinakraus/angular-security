@@ -34,8 +34,7 @@ app.get('/view', function (req, res) {
 });
 
 app.post('/login', function (req, res) {
-    console.log(`Login Successfully`);
-    res.sendStatus(200);
+    res.send({ text: `Login Successfully`});
 });
 
 

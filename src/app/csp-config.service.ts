@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable } from "rxjs";
+import { map, Observable, of } from "rxjs";
 
 type NonceConfig = {
   value: string;
@@ -17,8 +17,9 @@ export class CspConfig {
   private _nonce: any;
   private http = inject(HttpClient);
 
-  load() {
+  load(): Observable<NonceConfig> {
     // ToDo load CSPs from Backend-Api: 'http://localhost:3000/csp'
+    return of({ value: '', nonce: '' });
   }
 
   get config(): string {

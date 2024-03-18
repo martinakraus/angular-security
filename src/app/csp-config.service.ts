@@ -17,13 +17,8 @@ export class CspConfig {
   private _nonce: any;
   private http = inject(HttpClient);
 
-  load(): Observable<NonceConfig> {
-    return this.http.get<NonceConfig>('http://localhost:3000/csp').pipe(
-      map(data => {
-        this._config = data.value;
-        this._nonce = data.nonce;
-        return data;
-      }))
+  load() {
+    // ToDo load CSPs from Backend-Api: 'http://localhost:3000/csp'
   }
 
   get config(): string {

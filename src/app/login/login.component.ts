@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { Observable, take } from 'rxjs';
+import { take } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AsyncPipe } from '@angular/common';
 
@@ -29,7 +29,7 @@ export class LoginComponent {
   }
 
   getCurrentView() {
-    this.http.get<{views: number}>('http://localhost:3000/view', { withCredentials: true }).pipe(take(1)).subscribe(
+    this.http.get<{ views: number }>('http://localhost:3000/view', {withCredentials: true}).pipe(take(1)).subscribe(
       response => this.views = response.views
     );
   }

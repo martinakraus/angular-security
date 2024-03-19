@@ -8,7 +8,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "create:sbom": "cyclonedx-npm --output-file bom.json"
   },
   "private": true,
   "dependencies": {

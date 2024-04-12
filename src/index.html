@@ -6,10 +6,9 @@
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-lK+Y3vDnNUrD/ZPLGsnM6B+euoBxZ/MyiIbY2G5VoPw='; connect-src 'self' http://localhost:4730; img-src 'self'; style-src 'self' 'unsafe-inline' ;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; connect-src 'self' http://localhost:4730; img-src 'self'; style-src 'self' 'unsafe-inline' ;">
   </head>
   <body>
     <app-root></app-root>
-    <script>document.write('<h1>Inline scripting is <b>not recommended</b>! But if you have not the choice, <b>secure your app with CSP</b></h1>');</script>
   </body>
 </html>

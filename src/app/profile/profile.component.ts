@@ -14,7 +14,6 @@ import { AsyncPipe, NgIf } from "@angular/common";
 })
 export class ProfileComponent {
   profileJson: string = '';
-
   constructor(public auth: AuthService) {}
 
   ngOnInit() {

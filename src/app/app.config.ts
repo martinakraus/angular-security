@@ -21,7 +21,8 @@ export const appConfig: ApplicationConfig = {
       },
       httpInterceptor: {
         allowedList: [`${apiUri}/*`],
-      }
+      },
+      useRefreshTokens: true
     }),
   ]
 };

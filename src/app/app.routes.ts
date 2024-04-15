@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { isUserAuthenticatedGuardFn } from './is-user-authenticated.guard';
 import { ProfileComponent } from "./profile/profile.component";
+import { AuthGuard, authGuardFn } from "@auth0/auth0-angular";
 
 export const routes: Routes = [
   {
@@ -15,12 +16,13 @@ export const routes: Routes = [
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [authGuardFn]
   },
   {
     path: 'books',
     loadChildren: () =>
       import('./book/book.routes').then(mod => mod.bookRoutes),
-    canMatch: [isUserAuthenticatedGuardFn]
+    canMatch: [authGuardFn]
   }
 ];

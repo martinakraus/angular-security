@@ -27,9 +27,11 @@ app.use(
   })
 );
 
-// ToDo validate Token
-
-app.get('/api/external', (req, res) => {
+const checkJwt = auth({
+    audience: authConfig.authorizationParams.audience,
+    issuerBaseURL: `https://${authConfig.domain}`,
+});
+app.get('/api/external', checkJwt, (req, res) => {
     if (!req.header('Authorization')) {
         res.send({
             msg: 'No Token defined',

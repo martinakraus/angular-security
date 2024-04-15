@@ -16,13 +16,11 @@ export const routes: Routes = [
   },
   {
     path: 'profile',
-    component: ProfileComponent,
-    canActivate: [authGuardFn]
+    component: ProfileComponent
   },
   {
     path: 'books',
     loadChildren: () =>
-      import('./book/book.routes').then(mod => mod.bookRoutes),
-    canMatch: [authGuardFn]
+      import('./book/book.routes').then(mod => mod.bookRoutes)
   }
 ];

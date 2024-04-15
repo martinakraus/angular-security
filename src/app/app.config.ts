@@ -9,8 +9,8 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withXsrfConfiguration({})),
     provideRouter(routes, withComponentInputBinding()),
     provideAuth0({
-      domain: 'dev-codekittey.eu.auth0.com',
-      clientId: 'PqrUSlrGpMGqBFK9NbjHWZBej8yV8oNY',
+      domain: '',
+      clientId: '',
       authorizationParams: {
         redirect_uri: window.location.origin
       }

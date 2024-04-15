@@ -9,18 +9,13 @@ const apiUri = 'http://localhost:3001';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(
-      withXsrfConfiguration({}),
-      withInterceptors([authHttpInterceptorFn])),
+      withXsrfConfiguration({})),
     provideRouter(routes, withComponentInputBinding()),
     provideAuth0({
       domain: '',
       clientId: '',
       authorizationParams: {
-        redirect_uri: window.location.origin,
-        audience: apiUri
-      },
-      httpInterceptor: {
-        allowedList: [`${apiUri}/*`],
+        redirect_uri: window.location.origin
       }
     }),
   ]

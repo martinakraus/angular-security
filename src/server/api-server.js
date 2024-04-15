@@ -2,35 +2,41 @@ const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
-const { auth } = require('express-oauth2-jwt-bearer');
+const {auth} = require('express-oauth2-jwt-bearer');
 const authConfig = require('./auth_config.json');
 
 const app = express();
 
 if (
-  !authConfig.domain ||
-  !authConfig.authorizationParams.audience ||
-  authConfig.authorizationParams.audience === "YOUR_API_IDENTIFIER"
+    !authConfig.domain ||
+    !authConfig.authorizationParams.audience ||
+    authConfig.authorizationParams.audience === "YOUR_API_IDENTIFIER"
 ) {
-  console.log(
-    "Exiting: Please make sure that auth_config.json is in place and populated with valid domain and audience values"
-  );
+    console.log(
+        "Exiting: Please make sure that auth_config.json is in place and populated with valid domain and audience values"
+    );
 
-  process.exit();
+    process.exit();
 }
 
 app.use(morgan('dev'));
 app.use(helmet());
 app.use(
-  cors({
-    origin: authConfig.appUri,
-  })
+    cors({
+        origin: authConfig.appUri,
+    })
 );
 
 app.get('/api/external', (req, res) => {
-  res.send({
-    msg: 'Your access token was successfully validated!',
-  });
+    if (!req.header('Authorization')) {
+        res.send({
+            msg: 'No Token defined',
+        });
+    } else {
+        res.send({
+            msg: 'Your access token was successfully validated!',
+        });
+    }
 });
 
 const port = process.env.API_SERVER_PORT || 3001;

@@ -1,18 +1,26 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideHttpClient, withXsrfConfiguration } from '@angular/common/http';
+import { provideHttpClient, withInterceptors, withXsrfConfiguration } from '@angular/common/http';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { routes } from './app.routes';
-import { provideAuth0 } from "@auth0/auth0-angular";
+import { authHttpInterceptorFn, provideAuth0 } from "@auth0/auth0-angular";
+
+const apiUri = 'http://localhost:3001';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withXsrfConfiguration({})),
+    provideHttpClient(
+      withXsrfConfiguration({}),
+      withInterceptors([authHttpInterceptorFn])),
     provideRouter(routes, withComponentInputBinding()),
     provideAuth0({
-      domain: 'dev-codekittey.eu.auth0.com',
-      clientId: 'PqrUSlrGpMGqBFK9NbjHWZBej8yV8oNY',
+      domain: '',
+      clientId: '',
       authorizationParams: {
-        redirect_uri: window.location.origin
+        redirect_uri: window.location.origin,
+        audience: apiUri
+      },
+      httpInterceptor: {
+        allowedList: [`${apiUri}/*`],
       }
     }),
   ]

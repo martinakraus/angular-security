@@ -1,0 +1,10 @@
+{
+  "domain": "dev-codekittey.eu.auth0.com",
+  "clientId": "PqrUSlrGpMGqBFK9NbjHWZBej8yV8oNY",
+  "authorizationParams": {
+    "audience": "http://localhost:3001"
+  },
+  "apiUri": "http://localhost:3001",
+  "appUri": "http://localhost:4200",
+  "errorPath": "/error"
+}

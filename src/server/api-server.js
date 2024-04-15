@@ -28,9 +28,15 @@ app.use(
 );
 
 app.get('/api/external', (req, res) => {
-  res.send({
-    msg: 'Your access token was successfully validated!',
-  });
+    if (!req.header('Authorization')) {
+        res.send({
+            msg: 'No Token defined',
+        });
+    } else {
+        res.send({
+            msg: 'Your access token was successfully validated!',
+        });
+    }
 });
 
 const port = process.env.API_SERVER_PORT || 3001;

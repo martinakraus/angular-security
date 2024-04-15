@@ -27,6 +27,8 @@ app.use(
   })
 );
 
+// ToDo validate Token
+
 app.get('/api/external', (req, res) => {
     if (!req.header('Authorization')) {
         res.send({

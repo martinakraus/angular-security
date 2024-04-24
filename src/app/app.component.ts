@@ -24,7 +24,7 @@ export class AppComponent {
   renderData() {
     const safeValue = this.sanitizer.bypassSecurityTrustHtml(this.value);
     // Div 1
-    this.renderedValue = safeValue;
+    this.renderedValue = this.value;
 
     // Div 2
     this.unsafeRenderedValue = safeValue;

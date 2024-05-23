@@ -25,11 +25,13 @@ export class LoginComponent {
 
   submit() {
     const credentials = this.form.getRawValue();
-    this.http.post('http://localhost:3000/login', credentials, {withCredentials: true}).pipe(take(1)).subscribe();
+    this.http.post('/login', credentials, {withCredentials: true}).pipe(take(1)).subscribe();
   }
 
   getCurrentView() {
-    this.http.get<{ views: number }>('http://localhost:3000/view', {withCredentials: true}).pipe(take(1)).subscribe(
+    this.http.post<{
+      views: number
+    }>('/view', {views: this.views}, {withCredentials: true}).pipe(take(1)).subscribe(
       response => this.views = response.views
     );
   }

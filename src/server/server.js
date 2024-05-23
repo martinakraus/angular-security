@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const port = 3000;
+const path = require('path');
 const app = express();
 let views = 0;
 
@@ -12,6 +13,7 @@ app.use(cors({
     credentials: true, // Erlaube Cookies
 }))
 
+app.use(express.static(path.join(__dirname, '/dist/bookmonkey-client/browser')));
 
 app.use((req, res, next) => {
     if (!req.cookies['XSRF-TOKEN']) {
@@ -23,12 +25,13 @@ app.use((req, res, next) => {
     next();
 });
 
-// Eine Testroute
+// Alle Anfragen an die Angular App umleiten
 app.get('/', (req, res) => {
-    res.send('Hello, World!');
+    res.sendFile(path.resolve(__dirname, 'dist', 'bookmonkey-client/browser', 'index.html'));
 });
 
-app.get('/view', function (req, res) {
+app.post('/view', function (req, res) {
+    console.log(req.headers);
     views++;
     res.send({views});
 });

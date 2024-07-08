@@ -31,7 +31,6 @@ app.get('/', (req, res) => {
 });
 
 app.post('/view', function (req, res) {
-    console.log(req.headers);
     views++;
     res.send({views});
 });

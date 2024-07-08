@@ -29,7 +29,7 @@ export class LoginComponent {
   }
 
   getCurrentView() {
-    this.http.get<{ views: number }>('http://localhost:3000/view').pipe(take(1)).subscribe(
+    this.http.post<{ views: number }>('http://localhost:3000/view', { views: this.views }).pipe(take(1)).subscribe(
       response => this.views = response.views
     );
   }

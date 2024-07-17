@@ -5,15 +5,14 @@ const cookieParser = require('cookie-parser');
 const port = 3000;
 const path = require('path');
 const app = express();
-let views = 0;
 
 app.use(cookieParser());
-app.use(cors({
+/*app.use(cors({
     origin: 'http://localhost:4200', // Erlaube Anfragen von diesem Origin
     credentials: true, // Erlaube Cookies
-}))
+}))*/
 
-app.use(express.static(path.join(__dirname, '/dist/bookmonkey-client/browser')));
+app.use(express.static(path.join(__dirname, '/dist/browser')));
 
 app.use((req, res, next) => {
     if (!req.cookies['XSRF-TOKEN']) {
@@ -27,12 +26,11 @@ app.use((req, res, next) => {
 
 // Alle Anfragen an die Angular App umleiten
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'dist', 'bookmonkey-client/browser', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'dist', 'browser', 'index.html'));
 });
 
-app.post('/view', function (req, res) {
-    views++;
-    res.send({views});
+app.post('/send', function (req, res) {
+    res.send({ text: `Post Request Successfully`});
 });
 
 app.post('/login', function (req, res) {

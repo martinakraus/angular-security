@@ -8,6 +8,7 @@
 # dependencies
 /node_modules
 /src/server/node_modules
+/src/server/dist
 package-lock.json
 
 # IDEs and editors
@@ -18,6 +19,7 @@ package-lock.json
 *.launch
 .settings/
 *.sublime-workspace
+.nx/cache
 
 # IDE - VSCode
 .vscode/*

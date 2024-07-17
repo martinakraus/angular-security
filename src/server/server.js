@@ -5,13 +5,12 @@ const cookieParser = require('cookie-parser');
 const port = 3000;
 const path = require('path');
 const app = express();
-let views = 0;
 
 app.use(cookieParser());
-app.use(cors({
+/*app.use(cors({
     origin: 'http://localhost:4200', // Erlaube Anfragen von diesem Origin
     credentials: true, // Erlaube Cookies
-}))
+}))*/
 
 app.use(express.static(path.join(__dirname, '/dist/browser')));
 
@@ -30,9 +29,8 @@ app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'dist', 'browser', 'index.html'));
 });
 
-app.post('/view', function (req, res) {
-    views++;
-    res.send({views});
+app.post('/send', function (req, res) {
+    res.send({ text: `Post Request Successfully`});
 });
 
 app.post('/login', function (req, res) {

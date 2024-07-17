@@ -25,14 +25,10 @@ export class LoginComponent {
 
   submit() {
     const credentials = this.form.getRawValue();
-    this.http.post('http://localhost:3000/login', credentials, {withCredentials: true}).pipe(take(1)).subscribe();
+    this.http.post('/login', credentials).pipe(take(1)).subscribe();
   }
 
-  getCurrentView() {
-    this.http.post<{
-      views: number
-    }>('/view', {views: this.views}).pipe(take(1)).subscribe(
-      response => this.views = response.views
-    );
+  sendPost() {
+    this.http.post('/send', {}).pipe(take(1)).subscribe((res) => console.log(res));
   }
 }

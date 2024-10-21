@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "cd src/server && npm start",
+    "start": "npm run build && cd src/server && npm start",
     "build": "ng build --output-path=src/server/dist",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

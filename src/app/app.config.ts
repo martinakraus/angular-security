@@ -5,7 +5,7 @@ import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withXsrfConfiguration({})),
+    provideHttpClient(withXsrfConfiguration({ headerName: 'x-csrf-token' })),
     provideRouter(routes, withComponentInputBinding())
   ]
 };
